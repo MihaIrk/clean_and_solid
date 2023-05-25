@@ -1,5 +1,4 @@
-
-import '../models/employee.dart';
+import '../../models/employee.dart';
 
 abstract class ILocalService {
   void createEmployee(Employee employee);

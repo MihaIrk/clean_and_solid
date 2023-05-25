@@ -1,9 +1,11 @@
 import 'package:clean_and_solid/domain/states/cubit/employees_cubit/employees_list_cubit.dart';
+import 'package:clean_and_solid/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
 
-import '../domain/models/employee.dart';
+import '../models/employee.dart';
 
 class AddNewEmployee extends StatefulWidget {
   const AddNewEmployee({Key? key}) : super(key: key);
@@ -46,12 +48,12 @@ class _AddNewEmployeeState extends State<AddNewEmployee> {
             TextFieldWidget(label: 'Имя сотрудника', setValue: setName),
             TextFieldWidget(label: 'Должность', setValue: setPost),
             TextFieldAgeWidget(setValue: setAge),
-            TextFieldWidget(label: 'Придумайте ID', setValue: setId),
+            //TextFieldWidget(label: 'Придумайте ID', setValue: setId),
             ElevatedButton(
               onPressed: () {
                 if(_formKey.currentState!.validate()){
                   _formKey.currentState!.save();
-                  final newEmployee = Employee(name: newEmployeeName!, age: newEmployeeAge!, post: newEmployeePost!, id: newEmployeeId!);
+                  final newEmployee = Employee(name: newEmployeeName!, age: newEmployeeAge!, post: newEmployeePost!, id: getIt<Uuid>().v4());
                   context.read<EmployeesListCubit>().addNewEmployee(newEmployee);
                   Navigator.pop(context);
                 }

@@ -1,5 +1,5 @@
-import '../../domain/models/employee.dart';
-import '../../domain/repository/repository_service.dart';
+import '../../domain/repository/i_repository_service.dart';
+import '../../models/employee.dart';
 import '../repository/shared_prefs_repository.dart';
 
 

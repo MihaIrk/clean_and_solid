@@ -2,6 +2,7 @@ import 'package:clean_and_solid/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:uuid/uuid.dart';
 import 'data/repository/shared_prefs_repository.dart';
 import 'data/service/local_service.dart';
 import 'domain/states/cubit/employees_cubit/employees_list_cubit.dart';
@@ -12,6 +13,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   getIt.registerSingleton<SharedPrefs>(SharedPrefs());
   await getIt<SharedPrefs>().init();
+  getIt.registerSingleton<Uuid>(const Uuid());
   runApp(const MyApp());
 }
 

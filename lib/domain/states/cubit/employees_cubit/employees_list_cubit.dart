@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../models/employee.dart';
-import '../../../repository/repository_service.dart';
+import '../../../../models/employee.dart';
+import '../../../repository/i_repository_service.dart';
 
 part 'employees_list_state.dart';
 part 'employees_list_cubit.freezed.dart';
