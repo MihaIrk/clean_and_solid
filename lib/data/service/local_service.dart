@@ -2,11 +2,10 @@ import '../../domain/repository/i_repository_service.dart';
 import '../../models/employee.dart';
 import '../repository/shared_prefs_repository.dart';
 
-
-
 class LocalService extends ILocalService {
   final SharedPrefs storage;
-   LocalService({required this.storage});
+
+  LocalService({required this.storage});
 
   @override
   void createEmployee(Employee employee) {

@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: BlocBuilder<EmployeesListCubit, EmployeesListState>(
         builder: (context, state) {
-          if(state.employees.isEmpty){
+          if (state.employees.isEmpty) {
             return const Center(
               child: Text('Увы но у вас нет сотрудников'),
             );
@@ -34,7 +34,8 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         tooltip: 'Добавить нового сотрудника',
         onPressed: () async {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const AddNewEmployee()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const AddNewEmployee()));
         },
         child: const Icon(Icons.add),
       ),
@@ -42,10 +43,9 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-
-
 class EmployeeViewWidget extends StatelessWidget {
-  const EmployeeViewWidget({Key? key, required this.employee}) : super(key: key);
+  const EmployeeViewWidget({Key? key, required this.employee})
+      : super(key: key);
   final Employee employee;
 
   @override

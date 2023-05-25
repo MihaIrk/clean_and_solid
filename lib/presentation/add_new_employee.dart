@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
-
 import '../models/employee.dart';
 
 class AddNewEmployee extends StatefulWidget {
@@ -21,26 +20,24 @@ class _AddNewEmployeeState extends State<AddNewEmployee> {
   int? newEmployeeAge;
   String? newEmployeeId;
 
-  void setName(String? value){
+  void setName(String? value) {
     newEmployeeName = value!;
   }
 
-  void setPost(String? value){
+  void setPost(String? value) {
     newEmployeePost = value!;
   }
 
-  void setAge(String? value){
+  void setAge(String? value) {
     newEmployeeAge = int.tryParse(value!);
-  }
-
-  void setId(String? value){
-    newEmployeeId = value!;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Добавить нового сотрудника'),),
+      appBar: AppBar(
+        title: const Text('Добавить нового сотрудника'),
+      ),
       body: Form(
         key: _formKey,
         child: Column(
@@ -48,13 +45,18 @@ class _AddNewEmployeeState extends State<AddNewEmployee> {
             TextFieldWidget(label: 'Имя сотрудника', setValue: setName),
             TextFieldWidget(label: 'Должность', setValue: setPost),
             TextFieldAgeWidget(setValue: setAge),
-            //TextFieldWidget(label: 'Придумайте ID', setValue: setId),
             ElevatedButton(
               onPressed: () {
-                if(_formKey.currentState!.validate()){
+                if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  final newEmployee = Employee(name: newEmployeeName!, age: newEmployeeAge!, post: newEmployeePost!, id: getIt<Uuid>().v4());
-                  context.read<EmployeesListCubit>().addNewEmployee(newEmployee);
+                  final newEmployee = Employee(
+                      name: newEmployeeName!,
+                      age: newEmployeeAge!,
+                      post: newEmployeePost!,
+                      id: getIt<Uuid>().v4());
+                  context
+                      .read<EmployeesListCubit>()
+                      .addNewEmployee(newEmployee);
                   Navigator.pop(context);
                 }
               },
@@ -67,9 +69,9 @@ class _AddNewEmployeeState extends State<AddNewEmployee> {
   }
 }
 
-
 class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({Key? key, required this.label, required this.setValue}) : super(key: key);
+  const TextFieldWidget({Key? key, required this.label, required this.setValue})
+      : super(key: key);
   final String label;
   final Function(String? value) setValue;
 
@@ -90,7 +92,8 @@ class TextFieldWidget extends StatelessWidget {
 }
 
 class TextFieldAgeWidget extends StatelessWidget {
-  const TextFieldAgeWidget({Key? key, required this.setValue}) : super(key: key);
+  const TextFieldAgeWidget({Key? key, required this.setValue})
+      : super(key: key);
   final Function(String? value) setValue;
 
   @override

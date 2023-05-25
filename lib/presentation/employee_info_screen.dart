@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/employee.dart';
 
 class EmployeeInfoScreen extends StatelessWidget {
-  const EmployeeInfoScreen({Key? key, required this.employee}) : super(key: key);
+  const EmployeeInfoScreen({Key? key, required this.employee})
+      : super(key: key);
   final Employee employee;
 
   @override

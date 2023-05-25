@@ -4,10 +4,12 @@ import '../../../../models/employee.dart';
 import '../../../repository/i_repository_service.dart';
 
 part 'employees_list_state.dart';
+
 part 'employees_list_cubit.freezed.dart';
 
 class EmployeesListCubit extends Cubit<EmployeesListState> {
-  EmployeesListCubit({required this.localService}) : super(const EmployeesListState(employees: []));
+  EmployeesListCubit({required this.localService})
+      : super(const EmployeesListState(employees: []));
   final ILocalService localService;
 
   void addNewEmployee(Employee employee) async {
@@ -22,8 +24,8 @@ class EmployeesListCubit extends Cubit<EmployeesListState> {
   }
 
   void deleteEmployee(String id) async {
-     localService.deleteEmployee(id);
-     final employees = await localService.getAllEmployees();
-     emit(state.copyWith(employees: employees));
+    localService.deleteEmployee(id);
+    final employees = await localService.getAllEmployees();
+    emit(state.copyWith(employees: employees));
   }
 }

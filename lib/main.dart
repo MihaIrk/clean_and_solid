@@ -9,14 +9,13 @@ import 'domain/states/cubit/employees_cubit/employees_list_cubit.dart';
 
 GetIt getIt = GetIt.instance;
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   getIt.registerSingleton<SharedPrefs>(SharedPrefs());
   await getIt<SharedPrefs>().init();
   getIt.registerSingleton<Uuid>(const Uuid());
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,7 +25,8 @@ class MyApp extends StatelessWidget {
     final SharedPrefs storage = getIt<SharedPrefs>();
     final LocalService localService = LocalService(storage: storage);
     return BlocProvider(
-      create: (context) => EmployeesListCubit(localService: localService)..getEmployeesList(),
+      create: (context) =>
+          EmployeesListCubit(localService: localService)..getEmployeesList(),
       child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
