@@ -1,11 +1,11 @@
-import 'package:clean_and_solid/presentation/home_screen.dart';
+import 'package:clean_and_solid/presentation/logic/cubit/employees_cubit/employees_list_cubit.dart';
+import 'package:clean_and_solid/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:uuid/uuid.dart';
 import 'data/repository/shared_prefs_repository.dart';
-import 'data/service/local_service.dart';
-import 'domain/states/cubit/employees_cubit/employees_list_cubit.dart';
+import 'domain/usecases/shared_prefs_use_case.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SharedPrefs storage = getIt<SharedPrefs>();
-    final LocalService localService = LocalService(storage: storage);
+    final SharedPrefsUseCase localService = SharedPrefsUseCase(storage: storage);
     return BlocProvider(
       create: (context) =>
           EmployeesListCubit(localService: localService)..getEmployeesList(),

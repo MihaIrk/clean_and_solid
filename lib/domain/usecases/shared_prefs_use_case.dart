@@ -1,11 +1,22 @@
-import '../../domain/repository/i_repository_service.dart';
+import '../../data/repository/shared_prefs_repository.dart';
 import '../../models/employee.dart';
-import '../repository/shared_prefs_repository.dart';
 
-class LocalService extends ILocalService {
+abstract class ILocalService {
+  void createEmployee(Employee employee);
+
+  Future<Employee> getEmployee(String id);
+
+  Future<List<Employee>> getAllEmployees();
+
+  void updateEmployee(Employee employee);
+
+  void deleteEmployee(String id);
+}
+
+class SharedPrefsUseCase extends ILocalService {
   final SharedPrefs storage;
 
-  LocalService({required this.storage});
+  SharedPrefsUseCase({required this.storage});
 
   @override
   void createEmployee(Employee employee) {

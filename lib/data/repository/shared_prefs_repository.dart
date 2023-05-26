@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../domain/repository/i_repository.dart';
+import '../../domain/repository_interface/i_repository.dart';
 import '../../models/employee.dart';
 
 class SharedPrefs implements ILocalRepository {

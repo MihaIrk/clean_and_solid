@@ -1,9 +1,9 @@
-import 'package:clean_and_solid/presentation/add_new_employee.dart';
-import 'package:clean_and_solid/presentation/employee_info_screen.dart';
+import 'package:clean_and_solid/presentation/pages/employee_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../domain/states/cubit/employees_cubit/employees_list_cubit.dart';
-import '../models/employee.dart';
+import '../../models/employee.dart';
+import '../logic/cubit/employees_cubit/employees_list_cubit.dart';
+import 'add_new_employee_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         tooltip: 'Добавить нового сотрудника',
         onPressed: () async {
           Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const AddNewEmployee()));
+              MaterialPageRoute(builder: (_) => const AddNewEmployeeScreen()));
         },
         child: const Icon(Icons.add),
       ),

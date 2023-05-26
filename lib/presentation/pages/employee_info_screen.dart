@@ -1,7 +1,7 @@
-import 'package:clean_and_solid/domain/states/cubit/employees_cubit/employees_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/employee.dart';
+import '../../models/employee.dart';
+import '../logic/cubit/employees_cubit/employees_list_cubit.dart';
 
 class EmployeeInfoScreen extends StatelessWidget {
   const EmployeeInfoScreen({Key? key, required this.employee})

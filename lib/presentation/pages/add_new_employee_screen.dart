@@ -1,19 +1,20 @@
-import 'package:clean_and_solid/domain/states/cubit/employees_cubit/employees_list_cubit.dart';
 import 'package:clean_and_solid/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
-import '../models/employee.dart';
 
-class AddNewEmployee extends StatefulWidget {
-  const AddNewEmployee({Key? key}) : super(key: key);
+import '../../models/employee.dart';
+import '../logic/cubit/employees_cubit/employees_list_cubit.dart';
+
+class AddNewEmployeeScreen extends StatefulWidget {
+  const AddNewEmployeeScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddNewEmployee> createState() => _AddNewEmployeeState();
+  State<AddNewEmployeeScreen> createState() => _AddNewEmployeeScreenState();
 }
 
-class _AddNewEmployeeState extends State<AddNewEmployee> {
+class _AddNewEmployeeScreenState extends State<AddNewEmployeeScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? newEmployeeName;
   String? newEmployeePost;
