@@ -1,16 +1,13 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../domain/repository_interface/i_repository.dart';
-import '../../models/employee.dart';
-
-class SharedPrefs implements ILocalRepository {
+import '../../../models/employee.dart';
+class SharedPreferencesRepository {
   late final SharedPreferences _prefs;
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  @override
   Future createEmployee(Employee employee) async {
     final allEmployeesString = _prefs.getString('employees');
     List<dynamic> dynamicList = [];
@@ -28,7 +25,6 @@ class SharedPrefs implements ILocalRepository {
     await _prefs.setString('id', jsonEncode(employee));
   }
 
-  @override
   Future deleteEmployee(String id) async {
     final String? allEmployeesString = _prefs.getString('employees');
     List<dynamic> dynamicList = jsonDecode(allEmployeesString!);
@@ -43,7 +39,6 @@ class SharedPrefs implements ILocalRepository {
     await _prefs.remove(id);
   }
 
-  @override
   Future<List<Employee>> getAllEmployees() async {
     final String? allEmployeesString = _prefs.getString('employees');
     final List<dynamic> dynamicList = jsonDecode(allEmployeesString!);
@@ -56,14 +51,12 @@ class SharedPrefs implements ILocalRepository {
     return employees;
   }
 
-  @override
   Future<Employee> getEmployee(String id) async {
     final String? value = _prefs.getString(id);
     final Employee employee = jsonDecode(value!);
     return employee;
   }
 
-  @override
   Future updateEmployee(Employee employee) async {
     await _prefs.setString(employee.id, jsonEncode(employee));
   }

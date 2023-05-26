@@ -1,47 +1,32 @@
-import '../../data/repository/shared_prefs_repository.dart';
 import '../../models/employee.dart';
+import '../repository_interface/i_repository.dart';
 
-abstract class ILocalService {
-  void createEmployee(Employee employee);
+class SharedPrefsUseCase {
+  ILocalRepository repository;
 
-  Future<Employee> getEmployee(String id);
+  SharedPrefsUseCase({
+    required this.repository,
+  });
 
-  Future<List<Employee>> getAllEmployees();
-
-  void updateEmployee(Employee employee);
-
-  void deleteEmployee(String id);
-}
-
-class SharedPrefsUseCase extends ILocalService {
-  final SharedPrefs storage;
-
-  SharedPrefsUseCase({required this.storage});
-
-  @override
   void createEmployee(Employee employee) {
-    storage.createEmployee(employee);
+    repository.createEmployee(employee);
   }
 
-  @override
   void deleteEmployee(String id) async {
-    storage.deleteEmployee(id);
+    repository.deleteEmployee(id);
   }
 
-  @override
   Future<List<Employee>> getAllEmployees() async {
-    List<Employee> employeeList = await storage.getAllEmployees();
+    List<Employee> employeeList = await repository.getAllEmployees();
     return employeeList;
   }
 
-  @override
   Future<Employee> getEmployee(String id) async {
-    final employee = await storage.getEmployee(id);
+    final employee = await repository.getEmployee(id);
     return employee;
   }
 
-  @override
   void updateEmployee(Employee employee) async {
-    await storage.updateEmployee(employee);
+    await repository.updateEmployee(employee);
   }
 }

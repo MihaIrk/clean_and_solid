@@ -8,24 +8,24 @@ part 'employees_list_state.dart';
 part 'employees_list_cubit.freezed.dart';
 
 class EmployeesListCubit extends Cubit<EmployeesListState> {
-  EmployeesListCubit({required this.localService})
+  EmployeesListCubit({required this.useCase})
       : super(const EmployeesListState(employees: []));
-  final ILocalService localService;
+  final SharedPrefsUseCase useCase;
 
   void addNewEmployee(Employee employee) async {
-    localService.createEmployee(employee);
-    final employees = await localService.getAllEmployees();
+    useCase.createEmployee(employee);
+    final employees = await useCase.getAllEmployees();
     emit(state.copyWith(employees: employees));
   }
 
   void getEmployeesList() async {
-    final employees = await localService.getAllEmployees();
+    final employees = await useCase.getAllEmployees();
     emit(state.copyWith(employees: employees));
   }
 
   void deleteEmployee(String id) async {
-    localService.deleteEmployee(id);
-    final employees = await localService.getAllEmployees();
+    useCase.deleteEmployee(id);
+    final employees = await useCase.getAllEmployees();
     emit(state.copyWith(employees: employees));
   }
 }
